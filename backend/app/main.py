@@ -11,7 +11,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins,
+    allow_origins=settings.allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allow_headers=["Authorization", "Content-Type"],
@@ -29,4 +29,8 @@ def health_check() -> dict[str, str]:
 
 @app.get("/", tags=["System"])
 def root() -> dict[str, str]:
-    return {"name": "BancABC Intelligence API", "docs": "/docs", "health": "/api/v1/health"}
+    return {
+        "name": "BancABC Intelligence API",
+        "docs": "/docs",
+        "health": "/api/v1/health",
+    }
